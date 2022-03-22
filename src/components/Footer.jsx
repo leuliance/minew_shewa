@@ -15,7 +15,7 @@ import {
   const Logo = (props) => {
     return (
         <Image 
-        src="/logo.webp"
+        src="/logo1.webp"
         h="72px"
         w="72px"
         objectFit={"contain"}

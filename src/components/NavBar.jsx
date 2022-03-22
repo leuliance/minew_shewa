@@ -53,7 +53,7 @@ export default function NavBar() {
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
-        <Image src="/logo.webp" h="64px" w="64px" objectFit={"contain"} />
+        <Image src="/logo1.webp" h="64px" w="64px" objectFit={"contain"} />
 
         <Flex alignItems={"center"}>
           <HStack

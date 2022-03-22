@@ -19,6 +19,7 @@ import {
   SimpleGrid,
   Icon,
   Image,
+  chakra,
 } from "@chakra-ui/react";
 import { MoonIcon } from "@chakra-ui/icons";
 
@@ -42,8 +43,8 @@ const Feature = ({ title,description, icon, iconBg, bg,color }) => {
         {icon}
       </Flex>
       <VStack w={{base:"180px",sm:"210px",md:"210px",xl:"210px"}} align="flex-start">
-      <Text fontWeight={600} color={color}>{title}</Text>
-      <Text fontWeight={300} fontSize={"14px"} color={color}>{description}</Text>
+      <chakra.p fontWeight={600} color={color}>{title}</chakra.p>
+      <chakra.p fontWeight={300} fontSize={"14px"} color={color}>{description}</chakra.p>
 
       </VStack>
       

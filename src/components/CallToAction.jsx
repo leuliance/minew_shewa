@@ -85,7 +85,9 @@ import {
               </Stack>
             </Box>
             <Box flex={1}    >
-            <Image src="/hero.webp"  h="full" borderRadius= "200px 0px 0px 200px"/>
+            <Image src="/hero.webp"  h="full" 
+            // borderRadius= "200px 0px 0px 200px"
+            />
                 {/* <Box pos={"absolute"} w="50%" h="full" bottom="50" right={"0"} bg={"green"}>
                 <Image src="/hero.webp"  />
                 </Box>

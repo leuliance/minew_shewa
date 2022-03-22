@@ -14,13 +14,13 @@ function App() {
   return (
     <div >
       <NavBar />
-      <Box h="65px"/>
+      {/* <Box h="65px"/> */}
       <Hero />
       <AboutUs />
       <Stats />
       <HowItWorks />
       {/* <PlayList /> */}
-      {/* <ContactUs /> */}
+      <ContactUs />
       <CallToAction />
       <Footer/>
     </div>
