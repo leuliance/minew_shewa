@@ -7,15 +7,17 @@ import {
     Stack,
     Text,
     useColorModeValue,
+    useColorMode,
     VisuallyHidden,
     Image,
   } from '@chakra-ui/react';
   import {  BellIcon,CalendarIcon,ChatIcon } from '@chakra-ui/icons';
   
   const Logo = (props) => {
+    const { colorMode } = useColorMode();
     return (
         <Image 
-        src="/logo1.webp"
+        src={colorMode === "light" ? "/logo.webp" :"/logo1.webp"}
         h="72px"
         w="72px"
         objectFit={"contain"}
@@ -58,31 +60,29 @@ import {
             <Divider/>
         <Container
           as={Stack}
-          maxW={'7xl'}
+          maxW={'6xl'}
           py={10}
           direction={{ base: 'column', md: 'row' }}
           spacing={4}
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
-              <Text>© {new Date().getFullYear()} Minew Shewa Entertainment. All rights reserved</Text>
-          <Logo />
+              <Text >© {new Date().getFullYear()} Minew Shewa Entertainment. All rights reserved</Text>
+          <Box w={{ base: 'auto', md: "20%",lg:"30%" }}>
+            <Logo />
+          </Box>
+          
           
           <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'Twitter'} href={'#'}>
-              <BellIcon />
+            
+            <SocialButton label={'YouTube'} href="https://www.youtube.com/c/MinewShewaTube/">
+            <img src="https://img.icons8.com/material/24/000000/youtube-play--v1.png" />
+
+
             </SocialButton>
-            <SocialButton label={'YouTube'} href={'#'}>
-              <CalendarIcon />
+            <SocialButton label={'Instagram'} href="https://www.facebook.com/minewshewaa/">
+            <img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-new.png"/>
             </SocialButton>
-            <SocialButton label={'Instagram'} href={'#'}>
-              <ChatIcon />
-            </SocialButton>
-            <SocialButton label={'Twitter'} href={'#'}>
-              <BellIcon />
-            </SocialButton>
-            <SocialButton label={'YouTube'} href={'#'}>
-              <CalendarIcon />
-            </SocialButton>
+           
           </Stack>
         </Container>
       </Box>

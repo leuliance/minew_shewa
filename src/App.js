@@ -18,8 +18,9 @@ function App() {
       <Hero />
       <AboutUs />
       <Stats />
+      <PlayList />
       <HowItWorks />
-      {/* <PlayList /> */}
+      
       <ContactUs />
       <CallToAction />
       <Footer/>

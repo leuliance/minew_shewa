@@ -23,7 +23,7 @@ const Feature = ({ heading, text }) => {
 
 export default function AboutUs() {
   return (
-    <Box as={Container} maxW="6xl" mt={10} p={4}>
+    <Box id={"about"} as={Container} maxW="6xl" mt={10} p={4}>
       <Grid
         templateColumns={{
           base: "repeat(1, 1fr)",

@@ -6,31 +6,86 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  VisuallyHidden,
+  Flex,
   Grid,
   GridItem,
   Image,
+  Heading,
 } from "@chakra-ui/react";
 import { BellIcon, CalendarIcon, ChatIcon } from "@chakra-ui/icons";
 
-import Gallery from "react-grid-gallery";
+import ReactPlayer from "react-player/lazy";
+
+import {  useQuery } from 'react-query'
+
 
 export default function PlayList() {
+  const { isLoading, error, data } = useQuery('playlists', () =>
+     fetch('https://minew-shewa.herokuapp.com/playlists').then(res =>
+       res.json()
+     )
+   );
+
+   console.log(data)
   return (
-    <Box
+    <Flex
+    id="playlist"
       bg={useColorModeValue("white", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
+      justifyContent="center"
+      alignItems="center"
+      w="full"
+      flexDir={"column"}
     >
-      <Container as={Stack} maxW={"7xl"} py={10}>
-        <Grid
+      <Heading
+        fontSize={{
+          base: "4xl",
+          md: "5xl",
+        }}
+        color={useColorModeValue("black", "white")}
+        pt={10}
+      >
+        Your favorite playlists
+      </Heading>
+      <Container
+        as={Stack}
+        maxW="7xl"
+        w={{ md: "3xl", lg: "6xl" }}
+        alignItems="center"
+        py={10}
+        rounded="lg"
+      >
+        {isLoading ||  error ? <Box
+            // key={index}
+            height={"10vh"}
+            position="relative"
+            backgroundPosition="center contain"
+            backgroundRepeat="no-repeat"
+            backgroundSize="cover"
+            
+            // backgroundImage={card.image}
+            backgroundImage={"/hero1.webp"}
+          ></Box> : data.length  > 0 ? <ReactPlayer
+          url={data[0]?.youtubeLink}
+          width={"100%"}
+          pip={true}
+          controls={true}
+          style={{
+            borderRadius:"40px",
+          }}
+        /> :  null}
+        
+        {/* <Grid
           templateRows="repeat(2, 1fr)"
           templateColumns="repeat(5, 1fr)"
           gap={4}
         >
-          <GridItem rowSpan={2} colSpan={1} bg="tomato" >
-              <Image src='/hero.webp'  maxH="660px" maxW="350px" objectFit={"center"}/>
+          <GridItem rowSpan={2} h="auto" w="500px" colSpan={1} bg="tomato" >
+              <Image src='/hero.webp' h="full" objectFit={"center"}/>
           </GridItem>
-          <GridItem colSpan={4} bg="tomato" />
+          <GridItem colSpan={4} bg="tomato" >
+          <Image src='/hero.webp' h="full" objectFit={"center"}/>
+          </GridItem>
           <GridItem colSpan={2} bg="papayawhip" />
           <GridItem colSpan={2} bg="papayawhip" />
         </Grid>
@@ -39,17 +94,15 @@ export default function PlayList() {
           templateColumns="repeat(5, 1fr)"
           gap={4}
         >
-          <GridItem rowSpan={2}  colSpan={1} bg="tomato" 
-        //   maxH="600px" maxW="700px"
-          />
+          <GridItem rowSpan={2} h="600px" w="700px" colSpan={1} bg="tomato" />
           
           <GridItem colSpan={2}  bg="papayawhip" />
           <GridItem colSpan={2} bg="papayawhip" />
           <GridItem colSpan={4}  bg="papayawhip" />
-          {/* <GridItem colSpan={2} bg="papayawhip" /> */}
-        </Grid>
+          <GridItem colSpan={2} bg="papayawhip" /> 
+        </Grid> */}
       </Container>
-    </Box>
+    </Flex>
   );
 }
 

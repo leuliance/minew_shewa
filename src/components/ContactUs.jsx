@@ -7,14 +7,10 @@ import {
   Heading,
   Text,
   HStack,
-  FormControl,
-  FormLabel,
-  Grid,
-  GridItem,
-  Input,
-  Textarea,
+ Link,
   chakra,
   useColorModeValue,
+  useColorMode,
   Image,
   VStack,
   Icon,
@@ -39,38 +35,74 @@ export default function ContactUs() {
   const bg = useColorModeValue("#FFF5E5", "#212121");
   const inputBgColor = useColorModeValue("white", "black");
   const inputplaceHolderColor = useColorModeValue("black", "white");
+  const firstColor = useColorModeValue("#FFF5E5", "#121212");
+  const btnBgColor = useColorModeValue("white", "#181818");
+  const { colorMode, } = useColorMode();
+
   return (
     <Flex
       bg={useColorModeValue("white", "#181818")}
-      p={10}
+      p={20}
       w="auto"
       justifyContent="center"
       alignItems="center"
       flexDir={"column"}
     >
-      <chakra.p fontSize={"20px"}>Contact us</chakra.p>
-      <Heading
-        fontSize={{
-          base: "4xl",
-          md: "5xl",
-        }}
-      >
-        Get in Touch
-      </Heading>
+      
+
       <Box
         // shadow="xl"
         // bg={useColorModeValue("white", "gray.800")}
         px={8}
         // py={10}
+        maxW="6xl"
         mx="auto"
       >
         <SimpleGrid
-          alignItems="center"
+          alignItems="flex-start"
+          justifyContent={"flex-start"}
           columns={{ base: 1, lg: 2 }}
           //   spacingY={{ base: 10, lg: 32 }}
           spacingX={{ base: 10, lg: 24 }}
         >
-          <Grid
+          <Stack>
+            <Heading
+              fontSize={{
+                base: "4xl",
+                md: "5xl",
+              }}
+            >
+              Get in Touch
+            </Heading>
+            <chakra.p fontSize={"20px"}>Connect with our social media that you use daily and keep things on track.</chakra.p>
+          </Stack>
+            <HStack p= {24} justify="space-around" bg={firstColor} borderBottomRadius="full">
+              <Link href="https://www.youtube.com/c/MinewShewaTube/" p={2} bg={btnBgColor} shadow={"lg"} rounded="lg">
+              <Image 
+                src={colorMode === "light" ? "/youtube.png" :"/youtube1.png"}
+                h={"35px"}
+                w="110px"
+                // backgroundColor={"white"}
+              />
+              </Link>
+              <Link href="https://www.facebook.com/minewshewaa/" p={2} bg={btnBgColor} shadow={"xl"} rounded="lg">
+              <Image 
+                src="/facebook.png"
+                h={"35px"}
+                w="120px"
+                
+              />
+              </Link>
+              
+            </HStack>
+        </SimpleGrid>
+      </Box>
+    </Flex>
+  );
+}
+
+{
+  /* <Grid
             flex={1}
             h="full"
             w={"full"}
@@ -130,7 +162,7 @@ export default function ContactUs() {
                 <HStack>
                   <Box>
                     <FormControl id="firstName" isRequired>
-                      {/* <FormLabel>First Name</FormLabel> */}
+                      {/* <FormLabel>First Name</FormLabel> 
                       <Input
                         type="text"
                         bg={inputBgColor}
@@ -143,7 +175,7 @@ export default function ContactUs() {
                   </Box>
                   <Box>
                     <FormControl id="lastName">
-                      {/* <FormLabel>Last Name</FormLabel> */}
+                      {/* <FormLabel>Last Name</FormLabel> 
                       <Input
                         type="text"
                         bg={inputBgColor}
@@ -156,7 +188,7 @@ export default function ContactUs() {
                   </Box>
                 </HStack>
                 <FormControl id="email" isRequired>
-                  {/* <FormLabel>Email address</FormLabel> */}
+                  {/* <FormLabel>Email address</FormLabel> 
                   <Input
                     type="email"
                     bg={inputBgColor}
@@ -167,7 +199,7 @@ export default function ContactUs() {
                   />
                 </FormControl>
                 <FormControl id="name">
-                  {/* <FormLabel>Message</FormLabel> */}
+                  {/* <FormLabel>Message</FormLabel> 
                   <Textarea
                     // size={"lg"}
                     bg={inputBgColor}
@@ -193,9 +225,5 @@ export default function ContactUs() {
                 </Stack>
               </Stack>
             </Box>
-          </Stack>
-        </SimpleGrid>
-      </Box>
-    </Flex>
-  );
+          </Stack> */
 }

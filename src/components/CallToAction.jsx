@@ -14,7 +14,7 @@ import {
   
   
   export default function CallToAction() {
-      const boxBg = useColorModeValue("#FFF5E5");
+      const boxBg = useColorModeValue("#FFF5E5","#181818");
       const bg = useColorModeValue("#ED6100","#212121");
       const btnBg = useColorModeValue("white","#ED6100");
     return (
@@ -86,7 +86,7 @@ import {
             </Box>
             <Box flex={1}    >
             <Image src="/hero.webp"  h="full" 
-            // borderRadius= "200px 0px 0px 200px"
+            borderRadius= "150px 0px 0px 150px"
             />
                 {/* <Box pos={"absolute"} w="50%" h="full" bottom="50" right={"0"} bg={"green"}>
                 <Image src="/hero.webp"  />

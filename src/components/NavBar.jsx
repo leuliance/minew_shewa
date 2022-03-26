@@ -15,9 +15,32 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 
-const Links = ["About", "How it works", "Playlist", "Contact"];
+// const Links = ["About",  "Playlist","How it works",];
+const Links = [
+  {
+    path: '/#about',
+    label: "About",
+  },
+  {
+    path: '/#playlist',
+    label: "Playlist",
+  },
+  {
+    path: '/#how_it_works',
+    label:"How it works",
+  },
+  // {
+  //   path: '/blog',
+  //   label: router.locale == 'en' ? 'Blog' : 'ብሎግ',
+  // },
+  // {
+  //   path: '/#contactUs',
+  //   label: router.locale == 'en' ? 'Contact Us' : 'አግኙን',
+  // },
+  
+];
 
-const NavLink = ({ children }) => (
+const NavLink = ({ children,linkTo }) => (
   <Link
     px={2}
     py={2}
@@ -26,7 +49,7 @@ const NavLink = ({ children }) => (
       textDecoration: "none",
       bg: useColorModeValue("gray.50", "gray.700"),
     }}
-    href={"#"}
+    href={linkTo}
   >
     {children}
   </Link>
@@ -53,7 +76,7 @@ export default function NavBar() {
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
-        <Image src="/logo1.webp" h="64px" w="64px" objectFit={"contain"} />
+        <Image src={colorMode === "light" ? "/logo.webp" :"/logo1.webp"} h="64px" w="64px" objectFit={"contain"} />
 
         <Flex alignItems={"center"}>
           <HStack
@@ -63,7 +86,7 @@ export default function NavBar() {
             display={{ base: "none", md: "flex" }}
           >
             {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
+              <NavLink key={link.path} linkTo={link.path}>{link.label}</NavLink>
             ))}
           </HStack>
           <Button onClick={toggleColorMode}>
@@ -76,7 +99,7 @@ export default function NavBar() {
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
             {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
+              <NavLink key={link.path} linkTo={link.path}>{link.label}</NavLink>
             ))}
           </Stack>
         </Box>

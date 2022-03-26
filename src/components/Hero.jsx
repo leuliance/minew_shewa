@@ -1,145 +1,190 @@
+import React from "react";
 import {
-  Stack,
-  Flex,
   Box,
-  Text,
-  VStack,
+  IconButton,
   useBreakpointValue,
-  useColorModeValue,
-  Image,
-  HStack,
+  Stack,
+  Heading,
+  Text,
+  Container,
 } from "@chakra-ui/react";
+import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
+// And react-slick as our Carousel Lib
+import Slider from "react-slick";
 
-import {useState} from 'react'
+import {  useQuery } from 'react-query'
 
 
-export default function Hero(){
-    const arrowStyles = {
-      cursor: "pointer",
-      pos: "absolute",
-      top: "50%",
-      w: "auto",
-      mt: "-22px",
-      p: "16px",
-      color: "white",
-      fontWeight: "bold",
-      fontSize: "18px",
-      transition: "0.6s ease",
-      borderRadius: "0 3px 3px 0",
-      userSelect: "none",
-      _hover: {
-        opacity: 0.8,
-        bg: "black",
+// Settings for the slider
+const settings = {
+  dots: true,
+  arrows: true,
+  fade: true,
+  // cssEase: "linear",
+  infinite: true,
+  autoplay: true,
+  speed: 4000,
+  autoplaySpeed: 4000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1700,
+      settings: {
+        slidesToShow: 5,
+        slidesToScroll: 3,
       },
-    };
-  
-    const slides = [
-      {
-        img: "/hero.webp",
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 3,
       },
-      {
-        img: "/hero.webp",
+    },
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
       },
-      {
-        img: "/hero.webp",
+    },
+    {
+      breakpoint: 800,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 2,
       },
-      {
-        img: "/hero.webp",
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        //   initialSlide: 3,
       },
-      {
-        img: "/hero.webp",
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
       },
-    ];
-  
-    const [currentSlide, setCurrentSlide] = useState(0);
-  
-    const slidesCount = slides.length;
-  
-    const prevSlide = () => {
-      setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
-    };
-    const nextSlide = () => {
-      setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
-    };
-    const setSlide = (slide) => {
-      setCurrentSlide(slide);
-    };
-    const carouselStyle = {
-      transition: "all .5s",
-      ml: `-${currentSlide * 100}%`,
-    };
-  
-    return (
-        <Box>
-        <Flex
-          w={"full"}
-          h={"100vh"}
-          backgroundImage={"/hero.webp"}
-          backgroundSize={"cover"}
-          backgroundPosition={"center center"}
-        />
-      </Box>
-    );
-  };
+    },
+  ],
+};
 
-// export default function Hero() {
-//   return (
-//     <Box>
-//       <Flex
-//         w={"full"}
-//         h={"100vh"}
-//         backgroundImage={"/hero.webp"}
-//         backgroundSize={"cover"}
-//         backgroundPosition={"center center"}
-//       />
-//     </Box>
-//   );
-// }
+export default function Hero() {
+  // As we have used custom buttons, we need a reference variable to
+  // change the state
+  const sliderRef = React.useRef(null);
 
-{/* <Flex
-w={"full"}
-        h={"100vh"}
-  bg={useColorModeValue("gray.200", "gray.600")}
-  // p={10}
-  mb={20}
-  alignItems="center"
-  justifyContent="center"
->
-  <Flex w="full" overflow="hidden" pos="relative">
-    <Flex h="full" w="full" {...carouselStyle}>
-      {slides.map((slide, sid) => (
-        <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
-          
-          <Image
-            src={slide.img}
-            alt="carousel image"
-            boxSize="full"
+  // These are the breakpoints which changes the position of the
+  // buttons as the screen size changes
+  const top = useBreakpointValue({ base: "90%", md: "50%" });
+  const side = useBreakpointValue({ base: "30%", md: "40px" });
+
+  // This list contains all the data for carousels
+  // This can be static or loaded from a server
+
+  const { isLoading, error, data } = useQuery('carousels', () =>
+     fetch('https://minew-shewa.herokuapp.com/carousels').then(res =>
+       res.json()
+     )
+   );
+
+  const cards = [
+    {
+        image:'/hero.webp',
+    //   image:
+    //     "https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },
+    {
+        image:'/logo1.webp',
+    //   image:
+    //     "https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80",
+    },
+    {
+        image:'/hero.webp',
+    //   image:
+    //     "https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },
+  ];
+
+  return (
+    <Box
+      position={"relative"}
+      height={"100vh"}
+      width={"full"}
+      overflow={"hidden"}
+    >
+      {/* CSS files for react-slick */}
+      <link
+        rel="stylesheet"
+        type="text/css"
+        charSet="UTF-8"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+      />
+      {/* Left Icon */}
+      <IconButton
+        aria-label="left-arrow"
+        variant="ghost"
+        position="absolute"
+        left={side}
+        top={top}
+        transform={"translate(0%, -50%)"}
+        zIndex={99}
+        shadow="lg"
+        onClick={() => sliderRef?.current?.slickPrev()}
+      >
+        <ArrowBackIcon size="40px" />
+      </IconButton>
+      {/* Right Icon */}
+      <IconButton
+        aria-label="right-arrow"
+        variant="ghost"
+        position="absolute"
+        right={side}
+        top={top}
+        transform={"translate(0%, -50%)"}
+        zIndex={99}
+        shadow="lg"
+        onClick={() => sliderRef?.current?.slickNext()}
+      >
+        <ArrowForwardIcon size="40px" />
+      </IconButton>
+      {/* Slider */}
+      <Slider {...settings} ref={sliderRef} >
+        {isLoading ? <Box
+            // key={index}
+            height={"100vh"}
+            position="relative"
+            backgroundPosition="center contain"
+            backgroundRepeat="no-repeat"
             backgroundSize="cover"
-          />
-        </Box>
-      ))}
-    </Flex>
-    <Text {...arrowStyles} left="0" onClick={prevSlide}>
-      &#10094;
-    </Text>
-    <Text {...arrowStyles} right="0" onClick={nextSlide}>
-      &#10095;
-    </Text>
-    {/* <HStack justify="center" h="50vh" pos="absolute" bottom="8px" w="full">
-      {Array.from({ length: slidesCount }).map((_, slide) => (
-        <Box
-          key={`dots-${slide}`}
-          cursor="pointer"
-          boxSize={["7px", , "15px"]}
-          m="0 2px"
-          bg={currentSlide === slide ? "blackAlpha.800" : "blackAlpha.500"}
-          rounded="50%"
-          display="inline-block"
-          transition="background-color 0.6s ease"
-          _hover={{ bg: "blackAlpha.800" }}
-          onClick={() => setSlide(slide)}
-        ></Box>
-      ))}
-    </HStack> 
-  </Flex>
-</Flex> */}
+            
+            // backgroundImage={card.image}
+            backgroundImage={"/hero1.webp"}
+          ></Box> : data.length  > 0 ? data[0]?.images?.map((card, index) => (
+            <Box
+              key={index}
+              height={"100vh"}
+              position="relative"
+              backgroundPosition="center contain"
+              backgroundRepeat="no-repeat"
+              backgroundSize="cover"
+              
+              // backgroundImage={card.image}
+              backgroundImage={`url(${card.url})`}
+            ></Box>
+          )): null}
+        
+      </Slider>
+    </Box>
+  );
+}
