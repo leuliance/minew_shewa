@@ -88,7 +88,7 @@ export default function HowItWorks() {
               fontSize={"48px"}
               color={useColorModeValue("black", "white")}
             >
-              How to use our CBRT in few easy steps.
+              How to use our CRBT in few easy steps.
             </Heading>
 
             <Image

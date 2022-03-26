@@ -27,51 +27,51 @@ const settings = {
   autoplaySpeed: 4000,
   slidesToShow: 1,
   slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 1700,
-      settings: {
-        slidesToShow: 5,
-        slidesToScroll: 3,
-      },
-    },
-    {
-      breakpoint: 1200,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 3,
-      },
-    },
-    {
-      breakpoint: 992,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      },
-    },
-    {
-      breakpoint: 800,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 2,
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        //   initialSlide: 3,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
+  // responsive: [
+  //   {
+  //     breakpoint: 1700,
+  //     settings: {
+  //       slidesToShow: 5,
+  //       slidesToScroll: 3,
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 1200,
+  //     settings: {
+  //       slidesToShow: 4,
+  //       slidesToScroll: 3,
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 992,
+  //     settings: {
+  //       slidesToShow: 3,
+  //       slidesToScroll: 3,
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 800,
+  //     settings: {
+  //       slidesToShow: 3,
+  //       slidesToScroll: 2,
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 768,
+  //     settings: {
+  //       slidesToShow: 2,
+  //       slidesToScroll: 2,
+  //       //   initialSlide: 3,
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 480,
+  //     settings: {
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1,
+  //     },
+  //   },
+  // ],
 };
 
 export default function Hero() {
@@ -114,8 +114,8 @@ export default function Hero() {
   return (
     <Box
       position={"relative"}
-      height={"100vh"}
-      width={"full"}
+      // height={"100vh"}
+      height={{base:"70vh",sm:"70vh",md:"100vh",lg:"100vh"}}
       overflow={"hidden"}
     >
       {/* CSS files for react-slick */}
@@ -166,18 +166,19 @@ export default function Hero() {
             position="relative"
             backgroundPosition="center contain"
             backgroundRepeat="no-repeat"
-            backgroundSize="cover"
+            backgroundSize={{base:"cover"}}
             
             // backgroundImage={card.image}
             backgroundImage={"/hero1.webp"}
           ></Box> : data.length  > 0 ? data[0]?.images?.map((card, index) => (
             <Box
               key={index}
-              height={"100vh"}
+              height={{base:"70vh",sm:"70vh",md:"100vh",lg:"100vh"}}
+
               position="relative"
-              backgroundPosition="center contain"
+              backgroundPosition={{base:"center center",sm:"center contain",md:"center contain",lg:"center contain"}}
               backgroundRepeat="no-repeat"
-              backgroundSize="cover"
+              backgroundSize={{base:"contain",md:"cover",lg:"cover"}}
               
               // backgroundImage={card.image}
               backgroundImage={`url(${card.url})`}
