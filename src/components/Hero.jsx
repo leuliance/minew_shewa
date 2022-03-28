@@ -12,66 +12,19 @@ import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
 // And react-slick as our Carousel Lib
 import Slider from "react-slick";
 
-import {  useQuery } from 'react-query'
-
+import { useQuery } from "react-query";
 
 // Settings for the slider
 const settings = {
   dots: true,
-  arrows: true,
+  arrows: false,
   fade: true,
-  // cssEase: "linear",
   infinite: true,
   autoplay: true,
-  speed: 4000,
-  autoplaySpeed: 4000,
+  speed: 500,
+  autoplaySpeed: 5000,
   slidesToShow: 1,
   slidesToScroll: 1,
-  // responsive: [
-  //   {
-  //     breakpoint: 1700,
-  //     settings: {
-  //       slidesToShow: 5,
-  //       slidesToScroll: 3,
-  //     },
-  //   },
-  //   {
-  //     breakpoint: 1200,
-  //     settings: {
-  //       slidesToShow: 4,
-  //       slidesToScroll: 3,
-  //     },
-  //   },
-  //   {
-  //     breakpoint: 992,
-  //     settings: {
-  //       slidesToShow: 3,
-  //       slidesToScroll: 3,
-  //     },
-  //   },
-  //   {
-  //     breakpoint: 800,
-  //     settings: {
-  //       slidesToShow: 3,
-  //       slidesToScroll: 2,
-  //     },
-  //   },
-  //   {
-  //     breakpoint: 768,
-  //     settings: {
-  //       slidesToShow: 2,
-  //       slidesToScroll: 2,
-  //       //   initialSlide: 3,
-  //     },
-  //   },
-  //   {
-  //     breakpoint: 480,
-  //     settings: {
-  //       slidesToShow: 1,
-  //       slidesToScroll: 1,
-  //     },
-  //   },
-  // ],
 };
 
 export default function Hero() {
@@ -81,41 +34,41 @@ export default function Hero() {
 
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
-  const top = useBreakpointValue({ base: "90%", md: "50%" });
-  const side = useBreakpointValue({ base: "30%", md: "40px" });
+  const top = useBreakpointValue({ base: '90%', md: '50%' });
+  const side = useBreakpointValue({ base: '30%', md: '10px' });
 
   // This list contains all the data for carousels
   // This can be static or loaded from a server
 
-  const { isLoading, error, data } = useQuery('carousels', () =>
-     fetch('https://minew-shewa.herokuapp.com/carousels').then(res =>
-       res.json()
-     )
-   );
+  const { isLoading, error, data } = useQuery("carousels", () =>
+    fetch("https://minew-shewa.herokuapp.com/carousels").then((res) =>
+      res.json()
+    )
+  );
 
   const cards = [
     {
-        image:'/hero.webp',
-    //   image:
-    //     "https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+      image: "/hero.webp",
+      //   image:
+      //     "https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
     },
     {
-        image:'/logo1.webp',
-    //   image:
-    //     "https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80",
+      image: "/logo1.webp",
+      //   image:
+      //     "https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80",
     },
     {
-        image:'/hero.webp',
-    //   image:
-    //     "https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+      image: "/hero.webp",
+      //   image:
+      //     "https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
     },
   ];
 
   return (
     <Box
       position={"relative"}
-      // height={"100vh"}
-      height={{base:"70vh",sm:"70vh",md:"100vh",lg:"100vh"}}
+      height={{ base: "70vh", sm: "70vh", md: "100vh", lg: "100vh" }}
+      width={"full"}
       overflow={"hidden"}
     >
       {/* CSS files for react-slick */}
@@ -133,58 +86,55 @@ export default function Hero() {
       {/* Left Icon */}
       <IconButton
         aria-label="left-arrow"
-        variant="ghost"
+        colorScheme="messenger"
+        borderRadius="full"
         position="absolute"
         left={side}
         top={top}
-        transform={"translate(0%, -50%)"}
-        zIndex={99}
-        shadow="lg"
-        onClick={() => sliderRef?.current?.slickPrev()}
-      >
-        <ArrowBackIcon size="40px" />
+        transform={'translate(0%, -50%)'}
+        zIndex={2}
+        onClick={() => sliderRef?.current?.slickPrev()}>
+        <ArrowBackIcon />
       </IconButton>
       {/* Right Icon */}
       <IconButton
         aria-label="right-arrow"
-        variant="ghost"
+        colorScheme="messenger"
+        borderRadius="full"
         position="absolute"
         right={side}
         top={top}
-        transform={"translate(0%, -50%)"}
-        zIndex={99}
-        shadow="lg"
-        onClick={() => sliderRef?.current?.slickNext()}
-      >
-        <ArrowForwardIcon size="40px" />
+        transform={'translate(0%, -50%)'}
+        zIndex={2}
+        onClick={() => sliderRef?.current?.slickNext()}>
+        <ArrowForwardIcon />
       </IconButton>
       {/* Slider */}
-      <Slider {...settings} ref={sliderRef} >
-        {isLoading ? <Box
+      <Slider {...settings} ref={sliderRef}>
+        {isLoading ? (
+          <Box
             // key={index}
-            height={"100vh"}
+            height={{ base: "70vh", sm: "70vh", md: "100vh", lg: "100vh" }}
             position="relative"
-            backgroundPosition="center contain"
+            backgroundPosition="center"
             backgroundRepeat="no-repeat"
-            backgroundSize={{base:"cover"}}
-            
-            // backgroundImage={card.image}
+            backgroundSize="cover"
+            // backgroundImage={`url(${url})`}
             backgroundImage={"/hero1.webp"}
-          ></Box> : data.length  > 0 ? data[0]?.images?.map((card, index) => (
+          ></Box>
+        ) : data.length > 0 ? (
+          data[0]?.images?.map((card, index) => (
             <Box
               key={index}
-              height={{base:"70vh",sm:"70vh",md:"100vh",lg:"100vh"}}
-
+              height={{ base: "70vh", sm: "70vh", md: "100vh", lg: "100vh" }}
               position="relative"
-              backgroundPosition={{base:"center center",sm:"center contain",md:"center contain",lg:"center contain"}}
+              backgroundPosition="center"
               backgroundRepeat="no-repeat"
-              backgroundSize={{base:"contain",md:"cover",lg:"cover"}}
-              
-              // backgroundImage={card.image}
+              backgroundSize="cover"
               backgroundImage={`url(${card.url})`}
             ></Box>
-          )): null}
-        
+          ))
+        ) : null}
       </Slider>
     </Box>
   );

@@ -26,7 +26,7 @@ export default function PlayList() {
      )
    );
 
-   console.log(data)
+  //  console.log(data)
   return (
     <Flex
     id="playlist"
@@ -53,11 +53,12 @@ export default function PlayList() {
         w={{ md: "3xl", lg: "6xl" }}
         alignItems="center"
         py={10}
+        // height={"700px"}
         rounded="lg"
       >
         {isLoading ||  error ? <Box
             // key={index}
-            height={"10vh"}
+            height={"20vh"}
             position="relative"
             backgroundPosition="center contain"
             backgroundRepeat="no-repeat"
@@ -68,6 +69,7 @@ export default function PlayList() {
           ></Box> : data.length  > 0 ? <ReactPlayer
           url={data[0]?.youtubeLink}
           width={"100%"}
+          height={"600px"}
           pip={true}
           controls={true}
           style={{
